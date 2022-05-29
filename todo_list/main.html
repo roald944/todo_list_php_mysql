@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>TODO List</title>
+</head>
+
+<body>
+    <marquee behavior="" direction="right">
+        <h1>To do List</h1>
+        <h4>By: Roald M. Dela Cruz</h4>
+        <h3>PHP / MYSQL / JS [HTML/CSS]</h3>
+    </marquee>
+    <div class="container" id="container">
+        <center>
+            <h1>To do List</h1>
+        </center>
+        <span id="inputs" class="inputs">
+            <label for="myentry">To do :</label>
+            <input type="text" name="myentry" id="myentry" maxlength="20" minlength="1">
+            <button id="addlist">Add</button>
+        </span>
+        <span class="listaction">
+            <strong id="showhidelist" title="Show List">Hide List</strong>
+            <strong id="clearlist">Clear List</strong>
+        </span>
+        <hr>
+        <details id="mylist" open>
+            <summary></summary>
+            <div id="myentries">
+                <!-- TODO Load Entries -->
+            </div>
+        </details>
+
+    </div>
+    <script>
+        var showhidelist = document.getElementById('showhidelist');
+        var details = document.getElementById('mylist');
+        showhidelist.addEventListener('click', () => {
+            if (details.style.display == "none") {
+                showhidelist.innerText = "Hide List";
+                details.style.display = "block";
+            } else {
+                showhidelist.innerText = "Show List";
+                details.style.display = "none";
+            }
+        });
+
+        var xmlhttp = new XMLHttpRequest();
+        let input_data = new FormData();
+        var addlist = document.getElementById('addlist');
+
+        function load_todo() {
+            xmlhttp.open("GET", "config.php?status=loadtodo", false);
+            xmlhttp.send(null);
+            var myentries = document.getElementById('myentries');
+            myentries.innerHTML = xmlhttp.responseText;
+        }
+
+        load_todo();
+
+        addlist.addEventListener('click', () => {
+            var myentry = document.getElementById('myentry');
+            input_data.append('myentry', myentry.value);
+            xmlhttp.open("POST", "config.php?status=addtodo", false);
+            xmlhttp.send(input_data);
+            // alert(xmlhttp.responseText);
+            details.style.display = "block";
+            myentry.value = "";
+            myentry.focus();
+            load_todo();
+        })
+
+        var clearlist = document.getElementById('clearlist');
+        clearlist.addEventListener('click', () => {
+            xmlhttp.open("GET", "config.php?status=clearlist", false);
+            xmlhttp.send(null);
+            load_todo();
+        });
+
+        function checkentry(id) {
+            input_data.append('list_id', id);
+            xmlhttp.open("POST", "config.php?status=updatetodo", false);
+            xmlhttp.send(input_data);
+            load_todo();
+        }
+
+        function deletefromlist(id) {
+            input_data.append('list_id', id);
+            xmlhttp.open("POST", "config.php?status=deletefromlist", false);
+            xmlhttp.send(input_data);
+            load_todo();
+        }
+
+    </script>
+</body>
+
+</html>

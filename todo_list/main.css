@@ -1,0 +1,145 @@
+* {
+
+    margin     : 0;
+    padding    : 0;
+    font-family: 'Segoe UI EMOJI';
+    transition : .3s ease;
+    box-sizing : border-box;
+}
+
+body {
+    height         : 100vh;
+    width          : 100vw;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+marquee {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    padding : 5px;
+}
+
+.container {
+    box-shadow     : 0 0 5px 0 black;
+    padding        : 20px;
+    border-radius  : 10px;
+    display        : grid;
+    justify-content: stretch;
+    align-items    : center;
+    gap            : 10px;
+}
+
+.inputs :is(label, input, button) {
+    font-size     : .9em;
+    font-weight   : 660;
+    letter-spacing: 1.1px;
+    padding       : 5px;
+    border        : none;
+    border-radius : 10px;
+}
+
+.inputs button {
+    cursor          : pointer;
+    background-color: white;
+    color           : black;
+}
+
+.inputs button:hover {
+    background-color: black;
+    color           : white;
+}
+
+.inputs input {
+    background: black;
+    color     : white;
+}
+
+.listaction {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+summary {
+    display: flex;
+}
+
+.listaction strong {
+    cursor          : pointer;
+    background-color: black;
+    color           : white;
+    padding         : 4px;
+    letter-spacing  : 1.2px;
+    border-radius   : 10px;
+}
+
+.listaction strong:hover {
+    background-color: whitesmoke;
+    color           : black;
+}
+
+details {
+    padding      : 5px;
+    border-radius: 5px;
+    overflow-y   : scroll;
+    height       : 150px;
+}
+
+details::-webkit-scrollbar {
+    z-index                   : -1;
+    background-color          : white;
+    width                     : 5px;
+    border-top-right-radius   : 5px;
+    border-bottom-right-radius: 5px;
+}
+
+details::-webkit-scrollbar-thumb {
+    background-color: black;
+}
+
+#myentries {
+    display        : grid;
+    justify-content: stretch;
+    align-items    : center;
+    gap            : 5px;
+    padding        : 4px;
+    width          : 100%;
+}
+
+.todo {
+    display        : flex;
+    justify-content: space-evenly;
+    align-items    : center;
+    gap            : 5px;
+}
+
+.todo label {
+    width           : 200px;
+    background-color: whitesmoke;
+    border-radius   : 5px;
+    padding         : 3px;
+    cursor          : pointer;
+    font-weight     : 660;
+    letter-spacing  : 1.2px;
+    text-align      : center;
+}
+
+.todo button {
+    background-color: black;
+    color           : red;
+    border          : none;
+    padding         : 5px;
+    border-radius   : 15px;
+    cursor          : pointer;
+    font-weight     : 600;
+    letter-spacing  : 1.1px;
+}
+
+
+strike {
+    color      : dimgray;
+    text-shadow: 1px 1px black;
+}
